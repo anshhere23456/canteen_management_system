@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Order System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="cart3.css">
+</head>
+<body>
+    <div class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#menu-item">Explore Foods</a>
+    <a href="review.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a href="#cart" class="cart-icon">
+        🛒
+        <span id="cart-count" class="cart-badge">0</span>
+        
+    </a>
+    <button onclick="toggleDarkMode()" class="dark-mode-btn"><i class="fa fa-adjust" aria-hidden="true"></i></button>
+    
+</div>
+
+    <div class="slider-container">
+      <div class="slider">
+        <img src="images/bg/ban4.jpg" alt="Image 1">
+        <img src="images/bg/ban2.jpg" alt="Image 2">
+        <img src="images/bg/banner1.jpg" alt="Image 3">
+        <img src="images/bg/bg-1.jpg" alt="Image 4">
+      </div>
+      <button class="prev" onclick="prevSlide()">Previous</button>
+      <button class="next" onclick="nextSlide()">Next</button>
+    </div>
+    
+        
+    
+    
+    <div class="container" id="menu-item">
+        <h2>Menu</h2>
+        <div class="menu">
+            
+            <div class="menu-item" id="cart">
+                <img src="images/cart/Cheese Pizza.jpg" alt="Item 1">
+                <p>Fingers</p>
+                <p> From ₹50</p>
+                <button onclick="addToCart('Item 1', 50, 'item1.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/cheese-Burger.jpg" alt="Item 2">
+                <p>Cheese Burger</p>
+                <p>From ₹80</p>
+                <button onclick="addToCart('Item 2', 80, 'item2.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/Lemostraw shake.webp" alt="Item 3">
+                <p>Lemostraw shake</p>
+                <p>From ₹120</p>
+                <button onclick="addToCart('Item 3', 120, 'item3.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/chole-bhature.jpg" alt="Item 4">
+                <p>Chole Bhature</p>
+                <p>From ₹60</p>
+                <button onclick="addToCart('Item 4', 60, 'item4.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/Pav Bhaji.jpg" alt="Item 5">
+                <p>Pav Bhaji</p>
+                <p>From ₹40</p>
+                <button onclick="addToCart('Item 5', 40, 'item5.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/Panni Puri.jpg" alt="Item 6">
+                <p>Panni Puri</p>
+                <p>From ₹20</p>
+                <button onclick="addToCart('Item 6', 20, 'item6.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/Cheese Pizza.jpg" alt="Item 7">
+                <p>Cheese Pizza</p>
+                <p>From ₹70</p>
+                <button onclick="addToCart('Item 8', 70, 'item8.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/Dhokla.jpg" alt="Item 8">
+                <p>Dhokla</p>
+                <p>From ₹90</p>
+                <button onclick="addToCart('Item 8', 90, 'item8.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/Dhokla cheese.jpg" alt="Item 9">
+                <p>Dhokla cheese</p>
+                <p>From ₹120</p>
+                <button onclick="addToCart('Item 9', 20, 'item9.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/samosa-chai.jpg" alt="Item 10">
+                <p>Chai Samosa</p>
+                <p>From ₹30</p>
+                <button onclick="addToCart('Item 10', 30, 'item10.jpg')">Add to Cart</button>
+            </div>
+            <div class="menu-item"id="cart">
+                <img src="images/cart/Pav Bhaji.jpg" alt="Item 11">
+                <p>Pav Bhaji</p>
+                <p>From ₹60</p>
+            <button onclick="addToCart('Item 11', 60, 'item11.jpg')">Add to Cart</button>
+        </div>
+        <div class="menu-item"id="cart">
+            <img src="images/cart/Pav Bhaji.jpg" alt="Item 11">
+            <p>Pav Bhaji</p>
+            <p>From ₹60</p>
+        <button onclick="addToCart('Item 11', 60, 'item11.jpg')">Add to Cart</button>
+    </div>
+        </div>
+        
+        <div class="cart">
+            <h2>Your Cart</h2>
+            <ul id="cartItems"></ul>
+            <center>  <p class="p11" ><img src="quar2.jpg"></p></center>
+            <p id="totalAmount">Total: ₹0</p>
+            <button onclick="showCheckoutForm()">Proceed to Checkout</button>
+        </div>
+
+        <div class="checkout" id="checkoutForm" style="display: none;">
+            <h2>Checkout</h2>
+            <form onsubmit="processPayment(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required><br>
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" id="mobile" required><br>
+                <label for="text">address</label>
+                <input type="text" id="address" required><br>
+                <button type="submit">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- About Section -->
+            <div class="footer-item about">
+                <h2><span class="highlight">ABES</span>Cafe</h2>
+                <p>
+                    Abe's Cafe offers delicious food, cozy ambiance, 
+                    friendly service, and a welcoming atmosphere for everyone to enjoy together.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Special Facilities Section -->
+            <div class="footer-item">
+                <h3>Special Facilities</h3>
+                <ul>
+                    <li>✔ Cheese Burger</li>
+                    <li>✔ Sandwich</li>
+                    <li>✔ Panner Burger</li>
+                    <li>✔ Special Sweets</li>
+                </ul>
+            </div>
+
+            <!-- Contact Us Section -->
+            <div class="footer-item">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>📍 NH24, Chipiyana Buzurg, Ghaziabad, Uttar Pradesh, 201009.</li>
+                    <li>📞 (+91) 3456 7890 123</li>
+                    <li>✉ canteen@abes.ac.in</li>
+                    <li>🕒 48/7 Hours Service</li>
+                </ul>
+            </div>
+
+            <!-- Social Gallery Section -->
+            <div class="footer-item">
+                <h3>Social Gallery</h3>
+                <div class="gallery">
+                    <img src="images/footer/footer1.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer2.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer3.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer4.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer5.jpg" alt="Gallery Image">
+                    <img src="images/footer/fotter6.jpg" alt="Gallery Image">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+function toggleNavbar() {
+            var navbar = document.getElementById("navbar");
+            navbar.classList.toggle("responsive");
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    
+        let slideIndex = 0;
+
+function showSlides() {
+  const slides = document.querySelectorAll('.slider img');
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = 'none';
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = 'block';
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
+function prevSlide() {
+  slideIndex--;
+  showSlides();
+}
+
+function nextSlide() {
+  slideIndex++;
+  showSlides();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  showSlides();
+});
+
+let cart = [];
+let total = 0;
+
+function addToCart(itemName, itemPrice, itemImage) {
+    cart.push({ name: itemName, price: itemPrice, image: itemImage });
+    total += itemPrice;
+    displayCart();
+}
+
+
+function displayCart() {
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = '';
+
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<img src="${item.image}" alt="${item.name}"> ${item.name} - ₹${item.price}`;
+        cartItems.appendChild(li);
+    });
+
+    document.getElementById('totalAmount').innerText = `Total: ₹${total}`;
+}
+
+function showCheckoutForm() {
+    document.getElementById('checkoutForm').style.display = 'block';
+}
+
+function processPayment(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const mobile = document.getElementById('mobile').value;
+    const address = document.getElementById('address').value;
+
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add items to the cart.');
+        return;
+    }
+
+    const orderDetails = cart.map(item => `${item.name} - ₹${item.price}`).join('\n');
+    const orderMessage = `Order Details:\n${orderDetails}\n\nTotal: ₹${total}\n\nCustomer Details:\nName: ${name}\nMobile: ${mobile}\nAddress: ${address}\n\nThank you for your order!`;
+    
+    console.log(orderMessage); 
+    alert(orderMessage); 
+
+    
+    cart = [];
+    total = 0;
+    displayCart();
+    document.getElementById('checkoutForm').style.display = 'none';
+}
+
+    </script>
+</body>
+</html>

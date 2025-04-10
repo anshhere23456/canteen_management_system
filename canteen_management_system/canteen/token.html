@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Token System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="token.css">
+</head>
+<body>
+    <div class="navbar" id="navbar">
+       
+        <div>
+            <a href="index.html">Home</a>
+            <a href="index.html">About Us</a>
+            <a href="#explore-food">Explore Cafe's</a>
+            <a href="review.html">Reviews</a>
+            <a href="contact.html">Contact Us</a>
+           
+        </div>
+        
+    </div>
+    <div class="menu">
+        <div class="menu-item">
+            <img src="images/cart/Cheese Pizza.jpg" alt="Cheese Pizza">
+            <p>Fingers</p>
+            <p>From ₹50</p>
+        </div>
+        <div class="menu-item">
+            <img src="images/cart/cheese-Burger.jpg" alt="Cheese Burger">
+            <p>Cheese Burger</p>
+            <p>From ₹80</p>
+        </div>
+        <div class="menu-item">
+            <img src="images/cart/Lemostraw shake.webp" alt="Lemostraw Shake">
+            <p>Lemostraw Shake</p>
+            <p>From ₹120</p>
+        </div>
+        <div class="menu-item">
+            <img src="images/cart/chole-bhature.jpg" alt="Chole Bhature">
+            <p>Chole Bhature</p>
+            <p>From ₹60</p>
+        </div>
+        <div class="menu-item">
+            <img src="images/cart/Pav Bhaji.jpg" alt="Pav Bhaji">
+            <p>Pav Bhaji</p>
+            <p>From ₹40</p>
+        </div>
+        <div class="menu-item">
+            <img src="images/cart/Panni Puri.jpg" alt="Panni Puri">
+            <p>Panni Puri</p>
+            <p>From ₹20</p>
+        </div>
+    </div>
+    <div class="form-container">
+        <form id="orderForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="order">Order:</label>
+            <select id="order" name="order">
+            </select>
+
+            <button type="submit">Get Token</button>
+        </form>
+
+        <div id="tokenDisplay"></div>
+    </div>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();  
+
+            const name = document.getElementById('name').value;
+            const order = document.getElementById('order').value;
+
+            if (name && order) {
+                const token = generateToken();
+                displayToken(name, order, token);
+            } else {
+                alert('Please fill in both fields!');
+            }
+        });
+
+        function generateToken() {
+            return Math.floor(100 + Math.random() * 9000);
+        }
+
+        function displayToken(name, order, token) {
+            const tokenDisplay = document.getElementById('tokenDisplay');
+            tokenDisplay.innerHTML = `<p>Thank you, ${name}!</p>
+                                      <p>Your order for ${order} has been placed.</p>
+                                      <p>Your token is: <strong>${token}</strong></p>`;
+        }
+
+        function populateMenu() {
+            const menuItems = [
+                {name: 'Fingers', price: 50},
+                {name: 'Cheese Burger', price: 80},
+                {name: 'Lemostraw Shake', price: 120},
+                {name: 'Chole Bhature', price: 60},
+                {name: 'Pav Bhaji', price: 40},
+                {name: 'Panni Puri', price: 20},
+                {name: 'Cheese Pizza', price: 70},
+                {name: 'Dhokla', price: 90},
+                {name: 'Dhokla Cheese', price: 120},
+                {name: 'Chai Samosa', price: 30}
+            ];
+
+            const orderSelect = document.getElementById('order');
+            menuItems.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.name;
+                option.textContent = `${item.name} - ₹${item.price}`;
+                orderSelect.appendChild(option);
+            });
+        }
+
+        window.onload = populateMenu;
+
+        function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+    </script>
+
+</body>
+</html>

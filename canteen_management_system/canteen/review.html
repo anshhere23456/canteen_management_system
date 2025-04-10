@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | Canteen Management System</title>
+  <link rel="stylesheet" href="review.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#explore-food">Explore Cafe's</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- Review Section -->
+    <div class="review-section">
+        <h2>Customer Reviews</h2>
+        <p>Share your experience with us!</p>
+
+        <!-- Review Form -->
+        <div class="review-form">
+            <input type="text" id="name" placeholder="Your Name" required />
+            <textarea id="reviewText" placeholder="Write your review..." rows="5" required></textarea>
+            <div>
+                <label for="rating">Rating: </label>
+                <select id="rating" required>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </div>
+            <button onclick="submitReview()">Submit Review</button>
+        </div>
+
+        <!-- Display Reviews -->
+        <div class="reviews-list" id="reviews-list"></div>
+    </div>
+
+    <!-- Dark Mode Toggle Button -->
+    <button onclick="toggleDarkMode()" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 15px; background-color: #2c3e50; color: white; border: none; cursor: pointer; border-radius: 5px;">
+        Toggle Dark Mode
+    </button>
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- About Section -->
+            <div class="footer-item about">
+                <h2><span class="highlight">ABES</span>Cafe</h2>
+                <p>
+                    Abe's Cafe offers delicious food, cozy ambiance, 
+                    friendly service, and a welcoming atmosphere for everyone to enjoy together.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Special Facilities Section -->
+            <div class="footer-item">
+                <h3>Special Facilities</h3>
+                <ul>
+                    <li>✔ Cheese Burger</li>
+                    <li>✔ Sandwich</li>
+                    <li>✔ Panner Burger</li>
+                    <li>✔ Special Sweets</li>
+                </ul>
+            </div>
+
+            <!-- Contact Us Section -->
+            <div class="footer-item">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>📍 NH24, Chipiyana Buzurg, Ghaziabad, Uttar Pradesh, 201009.</li>
+                    <li>📞 (+91) 3456 7890 123</li>
+                    <li>✉ canteen@abes.ac.in</li>
+                    <li>🕒 48/7 Hours Service</li>
+                </ul>
+            </div>
+
+            <!-- Social Gallery Section -->
+            <div class="footer-item">
+                <h3>Social Gallery</h3>
+                <div class="gallery">
+                    <img src="images/footer/footer1.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer2.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer3.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer4.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer5.jpg" alt="Gallery Image">
+                    <img src="images/footer/fotter6.jpg" alt="Gallery Image">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reviews Array to store reviews
+        let reviews = [];
+
+        // Function to submit a review
+        function submitReview() {
+            const name = document.getElementById('name').value;
+            const reviewText = document.getElementById('reviewText').value;
+            const rating = document.getElementById('rating').value;
+
+            if (name && reviewText && rating) {
+                // Add the review to the reviews array
+                reviews.push({ name, reviewText, rating });
+
+                // Clear the form
+                document.getElementById('name').value = '';
+                document.getElementById('reviewText').value = '';
+                document.getElementById('rating').value = '1';
+
+                // Display reviews
+                displayReviews();
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+
+        // Function to display reviews
+        function displayReviews() {
+            const reviewsList = document.getElementById('reviews-list');
+            reviewsList.innerHTML = '';  // Clear previous reviews
+
+            // Loop through each review and create HTML structure
+            reviews.forEach(review => {
+                const reviewItem = document.createElement('div');
+                reviewItem.classList.add('review-item');
+                reviewItem.innerHTML = `
+                    <div class="review-name">${review.name}</div>
+                    <div class="review-rating">${'★'.repeat(review.rating)}</div>
+                    <div class="review-text">${review.reviewText}</div>
+                `;
+                reviewsList.appendChild(reviewItem);
+            });
+        }
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+</html>

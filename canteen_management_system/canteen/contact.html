@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#explore-food">Explore Cafe's</a>
+        <a href="review.html">Reviews</a>
+    </div>
+    <section class="contact-section">
+        <h1>Contact Us For Any Queries!</h1>
+        <p>
+            The contact form is functional. Fill in your details and message, and click Submit!
+        </p>
+        <form id="contact-form">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Enter Your Email" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Now</button>
+        </form>
+        <div id="confirmation" class="hidden">Thank you for contacting us. We will get back to you shortly!</div>
+    </section>
+    <footer class="footer">
+        <div class="footer-container">
+         
+            <div class="footer-item about">
+                <h2><span class="highlight">ABES</span>Cafe</h2>
+                <p>
+                    Abe's Cafe offers delicious food, cozy ambiance, 
+                    friendly service, and a welcoming atmosphere for everyone to enjoy together.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-item">
+                <h3>Special Facilities</h3>
+                <ul>
+                    <li>✔ Cheese Burger</li>
+                    <li>✔ Sandwich</li>
+                    <li>✔ Panner Burger</li>
+                    <li>✔ Special Sweets</li>
+                </ul>
+            </div>
+
+            <div class="footer-item">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>📍 NH24, Chipiyana Buzurg, Ghaziabad, Uttar Pradesh, 201009.</li>
+                    <li>📞 (+91) 3456 7890 123</li>
+                    <li>✉ canteen@abes.ac.in</li>
+                    <li>🕒 48/7 Hours Service</li>
+                </ul>
+            </div>
+
+            <div class="footer-item">
+                <h3>Social Gallery</h3>
+                <div class="gallery">
+                    <img src="images/footer/footer1.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer2.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer3.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer4.jpg" alt="Gallery Image">
+                    <img src="images/footer/footer5.jpg" alt="Gallery Image">
+                    <img src="images/footer/fotter6.jpg" alt="Gallery Image">
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script >
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault(); 
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (name && email && message) {
+        document.getElementById('confirmation').classList.remove('hidden');
+        this.reset(); 
+    } else {
+        alert('Please fill out all fields before submitting.');
+    }
+});
+
+
+
+
+    </script>
+</body>
+</html>
